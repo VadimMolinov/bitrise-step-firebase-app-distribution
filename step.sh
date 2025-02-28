@@ -261,7 +261,7 @@ echo_details "$submit_cmd"
 output=$(eval "${submit_cmd}" 2>&1)
 
 # Adjust the number of `sed -n 2p` if the position of the URL changes in the output
-FIREBASE_CONSOLE_URL=$(echo $output | grep -Eo "https://[a-zA-Z0-9./?=-_%:-]*")
+FIREBASE_CONSOLE_URL=$(echo $output | grep -Eo "https://[a-zA-Z0-9./?=-_%:-]*" | sed -n 1p)
 echo_info "firebase console url: ${FIREBASE_CONSOLE_URL}"
 envman add --key FIREBASE_CONSOLE_URL --value "${FIREBASE_CONSOLE_URL}"
 
